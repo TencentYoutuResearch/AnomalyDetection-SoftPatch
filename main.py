@@ -107,7 +107,7 @@ def get_dataloaders(args):
             noise_index_path.mkdir(parents=True, exist_ok=True)
             path = noise_index_path / (subdataset + "-noise" + str(noise) + ".pth")
             if path.exists():
-                noise_index = torch.load(path)
+                noise_index = torch.load(path, weights_only=True)
                 assert len(noise_index) == noise_number
             else:
                 noise_index = random.sample(anomaly_index, noise_number)
